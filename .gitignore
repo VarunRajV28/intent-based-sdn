@@ -20,4 +20,5 @@ logs/
 .DS_Store
 *.swp
 *.swo
+*.lock
 Thumbs.db

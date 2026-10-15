@@ -1,5 +1,107 @@
 {
-  "intents": [],
+  "intents": [
+    {
+      "action": "block",
+      "src": "guest",
+      "dst": "server",
+      "two_way": false,
+      "target": null,
+      "intent_id": null,
+      "text": "block guest from server",
+      "status": "partial",
+      "subpolicies": [
+        {
+          "controller": "c1",
+          "dpid": 1,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.1",
+            "ipv4_dst": "10.0.3.1"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c1",
+          "dpid": 1,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.1",
+            "ipv4_dst": "10.0.3.2"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c1",
+          "dpid": 2,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.2",
+            "ipv4_dst": "10.0.3.1"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c1",
+          "dpid": 2,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.2",
+            "ipv4_dst": "10.0.3.2"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c3",
+          "dpid": 5,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.1",
+            "ipv4_dst": "10.0.3.1"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c3",
+          "dpid": 5,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.2",
+            "ipv4_dst": "10.0.3.1"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c3",
+          "dpid": 6,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.1",
+            "ipv4_dst": "10.0.3.2"
+          },
+          "action": "drop",
+          "priority": 100
+        },
+        {
+          "controller": "c3",
+          "dpid": 6,
+          "match": {
+            "eth_type": 2048,
+            "ipv4_src": "10.0.1.2",
+            "ipv4_dst": "10.0.3.2"
+          },
+          "action": "drop",
+          "priority": 100
+        }
+      ],
+      "id": 1
+    }
+  ],
   "ownership": {
     "1": "c1",
     "2": "c1",
@@ -8,5 +110,13 @@
     "5": "c3",
     "6": "c3"
   },
-  "event_log": []
+  "event_log": [
+    {
+      "type": "intent_partial",
+      "intent_id": 1,
+      "failed_rules": 8,
+      "time": "2026-10-15 18:57:48"
+    }
+  ],
+  "next_id": 2
 }
