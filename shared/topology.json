@@ -1,0 +1,64 @@
+{
+  "controllers": [
+    {
+      "id": "c1",
+      "of_port": 6653,
+      "rest_port": 8081,
+      "domain": "A"
+    },
+    {
+      "id": "c2",
+      "of_port": 6654,
+      "rest_port": 8082,
+      "domain": "B"
+    },
+    {
+      "id": "c3",
+      "of_port": 6655,
+      "rest_port": 8083,
+      "domain": "C"
+    }
+  ],
+  "switches": [
+    {"dpid": 1, "name": "s1", "domain": "A", "default_owner": "c1"},
+    {"dpid": 2, "name": "s2", "domain": "A", "default_owner": "c1"},
+    {"dpid": 3, "name": "s3", "domain": "B", "default_owner": "c2"},
+    {"dpid": 4, "name": "s4", "domain": "B", "default_owner": "c2"},
+    {"dpid": 5, "name": "s5", "domain": "C", "default_owner": "c3"},
+    {"dpid": 6, "name": "s6", "domain": "C", "default_owner": "c3"}
+  ],
+  "hosts": [
+    {"name": "h1", "ip": "10.0.1.1", "mac": "00:00:00:00:00:01", "group": "guest",  "switch": 1},
+    {"name": "h2", "ip": "10.0.1.2", "mac": "00:00:00:00:00:02", "group": "guest",  "switch": 2},
+    {"name": "h3", "ip": "10.0.2.1", "mac": "00:00:00:00:00:03", "group": "staff",  "switch": 3},
+    {"name": "h4", "ip": "10.0.2.2", "mac": "00:00:00:00:00:04", "group": "staff",  "switch": 4},
+    {"name": "h5", "ip": "10.0.3.1", "mac": "00:00:00:00:00:05", "group": "server", "switch": 5},
+    {"name": "h6", "ip": "10.0.3.2", "mac": "00:00:00:00:00:06", "group": "server", "switch": 6}
+  ],
+  "links": [
+    {"src": "s1", "dst": "s2"},
+    {"src": "s2", "dst": "s3"},
+    {"src": "s3", "dst": "s4"},
+    {"src": "s4", "dst": "s5"},
+    {"src": "s5", "dst": "s6"}
+  ],
+  "groups": {
+    "guest":  ["h1", "h2"],
+    "staff":  ["h3", "h4"],
+    "server": ["h5", "h6"]
+  },
+  "invariants": [
+    {
+      "description": "At least one staff host must always be able to reach at least one server host",
+      "src_group": "staff",
+      "dst_group": "server",
+      "min_reachable_pairs": 1
+    },
+    {
+      "description": "At least one server host must always be able to reach at least one staff host",
+      "src_group": "server",
+      "dst_group": "staff",
+      "min_reachable_pairs": 1
+    }
+  ]
+}

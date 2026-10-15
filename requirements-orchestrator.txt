@@ -1,0 +1,16 @@
+# requirements-orchestrator.txt
+# Used by: Varun and Karthik (orchestrator side — no Mininet or Ryu needed)
+# Install inside the .venv created in the repo root:
+#   python3.9 -m venv .venv
+#   source .venv/bin/activate          # Linux/macOS
+#   .venv\Scripts\activate             # Windows
+#   python -m pip install pip==23.3.2 setuptools==65.5.1 wheel==0.42.0
+#   pip install -r requirements-orchestrator.txt
+#
+# IMPORTANT: Do NOT add, upgrade or change any version here without
+# first discussing it with the team. Keep exact == pins for reproducibility.
+
+networkx==3.2.1
+Flask==2.3.3
+requests==2.31.0
+pytest==7.4.4

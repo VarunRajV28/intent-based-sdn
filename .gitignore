@@ -1,0 +1,23 @@
+# Python virtual environment (Varun & Karthik only — never commit)
+.venv/
+
+# Python byte-code
+__pycache__/
+*.py[cod]
+*.pyo
+
+# pytest cache
+.pytest_cache/
+
+# Runtime files (store.json is committed as an empty template; actual runtime
+# state should not be committed)
+# shared/store.json   <- keep this commented so the empty template IS tracked
+
+# Controller log files (generated at runtime)
+logs/
+
+# Editor / OS artefacts
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
